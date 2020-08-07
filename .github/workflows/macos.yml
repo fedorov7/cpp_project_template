@@ -26,11 +26,11 @@ jobs:
         path: ${{ github.workspace }}/${{ env.INSTALL_LOCATION }}
         key: ${{ runner.os }}-dependencies
 
-    - name: Download Conan package manager.
+    - name: Install Conan package manager.
       run: |
-        pip3 install wheel setuptools
-        pip3 install conan
-        conan --version
+        pip3 install -U wheel setuptools
+        pip3 install -U conan requests
+        pip3 install -U conan_package_tools
 
     - name: configure
       run: cmake -Bbuild -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/$INSTALL_LOCATION
