@@ -8,7 +8,6 @@ on:
 
 env:
   BUILD_TYPE: Release
-  INSTALL_LOCATION: ".local"
 
 jobs:
   build:
@@ -16,19 +15,8 @@ jobs:
     runs-on: windows-latest
     if: "!contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.head_commit.message, '[ci skip]')"
 
-    env:
-      CONAN_USER_HOME_SHORT: C:\c
-      CONAN_USE_ALWAYS_SHORT_PATHS: 1
-
     steps:
     - uses: actions/checkout@v2
-
-    - name: cache dependencies
-      uses: actions/cache@v2
-      id: cache
-      with:
-        path: ${{env.INSTALL_LOCATION}}
-        key: ${{runner.os}}-dependencies
 
     - name: Install Conan package manager.
       run: |
@@ -37,7 +25,7 @@ jobs:
         pip3 install -U conan_package_tools
 
     - name: configure
-      run: cmake -Bbuild -DCMAKE_INSTALL_PREFIX="$HOME/$env:INSTALL_LOCATION"
+      run: cmake -Bbuild -DCMAKE_INSTALL_PREFIX="$HOME/$env:.local"
 
     - name: build
       run: cmake --build build --config "$env:BUILD_TYPE" -j4

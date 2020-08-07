@@ -58,19 +58,11 @@ jobs:
       with:
         submodules: recursive
 
-    - name: cache dependencies
-      uses: actions/cache@v2
-      id: cache
-      with:
-        path: ${{ github.HOME }}/.local
-        key: ${{ runner.os }}-dependencies
-
     - name: Install Conan package manager.
       run: |
         pip3 install -U wheel setuptools
         pip3 install -U conan requests
         pip3 install -U conan_package_tools
-        export PATH=$PATH:/home/runner/.local/bin
 
     - name: configure
       run: cmake -Bbuild -DCMAKE_INSTALL_PREFIX="$HOME/.local"
