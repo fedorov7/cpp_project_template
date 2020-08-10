@@ -25,7 +25,7 @@ jobs:
         pip3 install -U conan_package_tools
 
     - name: configure
-      run: cmake -Bbuild -DCMAKE_INSTALL_PREFIX="$HOME/.local" -DCODE_COVERAGE=ON
+      run: cmake -Bbuild -DCMAKE_INSTALL_PREFIX="$HOME/.local" -DProject_ENABLE_CODE_COVERAGE=1
 
     - name: build
       run: cmake --build build --config $BUILD_TYPE -j4
