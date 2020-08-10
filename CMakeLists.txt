@@ -39,6 +39,7 @@ include(StaticAnalyzers)
 include(ProhibitInSourceBuild)
 include(SetupNinjaColors)
 include(SetupConan)
+include(CodeCoverage)
 
 add_subdirectory(src)
 
