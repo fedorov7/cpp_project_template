@@ -6,7 +6,7 @@ else()
 endif()
 
 add_library(catch_main STATIC catch_main.cpp)
-target_link_libraries(catch_main PUBLIC CONAN_PKG::catch2 CONAN_PKG::span-lite)
+target_link_libraries(catch_main PUBLIC CONAN_PKG::catch2)
 
 file(GLOB UNIT_TEST_SOURCES *.cpp)
 add_executable(tests ${UNIT_TEST_SOURCES})
